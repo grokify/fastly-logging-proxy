@@ -20,7 +20,7 @@ func main() {
 	}
 
 	fastlyChallengeHandler := func(w http.ResponseWriter, req *http.Request) {
-		io.WriteString(w, responseBody())
+		io.WriteString(w, challengeResponseBody())
 	}
 
 	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
@@ -40,7 +40,7 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
-func responseBody() string {
+func challengeResponseBody() string {
 	ids := strings.Split(os.Getenv("FASTLY_SERVICE_IDS"), ",")
 	responses := []string{}
 	for _, id := range ids {
