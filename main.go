@@ -29,7 +29,7 @@ func main() {
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}
 
-		_, err = http.Post(os.Getenv("PROXY_URL"), "application/json", bytes.NewBuffer(body))
+		_, err = http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), bytes.NewBuffer(body))
 		if err != nil {
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}
