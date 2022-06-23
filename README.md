@@ -13,5 +13,5 @@ This small server supports the challenge at `/.well-known/fastly/logging/challen
 Set the following environment variables:
 
 * `PORT`: the port the service listens on. Do not populate for Heroku as Heroku will automatically populate this.
-* `FASTLY_SERVICEIDS`: a comma-delimited list of Service IDs. Use `*` to indicate any Service ID.
+* `FASTLY_SERVICE_IDS`: a comma-delimited list of Service IDs. Use `*` to indicate any Service ID.
 * `PROXY_URL`: the URL where the incoming body should be posted to. Only HTTP `POST` method is supported for now.
