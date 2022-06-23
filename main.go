@@ -53,6 +53,9 @@ func responseBody() string {
 			responses = append(responses, sum256String(id))
 		}
 	}
+	if len(responses) == 0 {
+		responses = append(responses, "*")
+	}
 	return strings.Join(responses, "\n")
 }
 
