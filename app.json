@@ -1,0 +1,13 @@
+{
+    "name": "",
+    "description": "",
+    "keywords": [],
+    "website": "",
+    "repository": "https://github.com/.../fastly-compute-logger-http-proxy",
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "Free"
+        }
+    }
+}
