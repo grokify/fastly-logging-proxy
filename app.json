@@ -24,5 +24,8 @@
             "value": "deadbeefdeadbeef,beefdeadbeefdead,*",
             "required": false
         }
-    }
+    },
+    "addons": [
+        "papertrail:choklad"
+    ]
 }
