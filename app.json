@@ -1,13 +1,28 @@
 {
-    "name": "",
-    "description": "",
-    "keywords": [],
-    "website": "",
-    "repository": "https://github.com/.../fastly-compute-logger-http-proxy",
+    "name": "Fastly Compute@Edge Logger HTTP/S Proxy",
+    "description": "Proxy HTTPS logging info to a service without the need for a challenge",
+    "keywords": [
+        "Fastly",
+        "Compute@Edge"
+    ],
+    "website": "https://github.com/grokify/fastly-compute-logger-http-proxy",
+    "repository": "https://github.com/grokify/fastly-compute-logger-http-proxy",
     "formation": {
         "web": {
             "quantity": 1,
             "size": "Free"
+        }
+    },
+    "env": {
+        "PROXY_URL": {
+            "description": "HTTP POST URL to repost body to.",
+            "value": "https://example.com",
+            "required": true
+        },
+        "FASTLY_SERVICE_IDS": {
+            "description": "Comma-delimited list of Fastly Service IDs. Use `*` for any host.",
+            "value": "deadbeefdeadbeef,beefdeadbeefdead,*",
+            "required": false
         }
     }
 }
