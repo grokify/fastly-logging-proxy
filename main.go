@@ -41,7 +41,7 @@ func main() {
 }
 
 func responseBody() string {
-	ids := strings.Split(os.Getenv("FASTLY_SERVICEIDS"), ",")
+	ids := strings.Split(os.Getenv("FASTLY_SERVICE_IDS"), ",")
 	responses := []string{}
 	for _, id := range ids {
 		id = strings.TrimSpace(id)
