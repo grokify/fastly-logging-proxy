@@ -25,12 +25,12 @@ func main() {
 
 	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
 		body, err := io.ReadAll(req.Body)
-		if err != nil{
+		if err != nil {
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}
 
-		_, err = http.Post(os.Getenv("PROXY_URL"), "application/json", bytes.NewBuffer(body) )
-		if err != nil{
+		_, err = http.Post(os.Getenv("PROXY_URL"), "application/json", bytes.NewBuffer(body))
+		if err != nil {
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		}
 	}
@@ -45,7 +45,7 @@ func responseBody() string {
 	responses := []string{}
 	for _, id := range ids {
 		id = strings.TrimSpace(id)
-		if len(id) ==0 {
+		if len(id) == 0 {
 			continue
 		} else if id == "*" {
 			responses = append(responses, "*")
