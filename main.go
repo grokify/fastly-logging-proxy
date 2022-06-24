@@ -22,19 +22,19 @@ func main() {
 	fastlyChallengeHandler := func(w http.ResponseWriter, req *http.Request) {
 		_, err := io.WriteString(w, challengeResponseBody())
 		if err != nil {
-			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			httpError(w, http.StatusInternalServerError)
 		}
 	}
 
 	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
 		body, err := io.ReadAll(req.Body)
 		if err != nil {
-			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			httpError(w, http.StatusInternalServerError)
 		}
 
 		_, err = http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), bytes.NewBuffer(body))
 		if err != nil {
-			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			httpError(w, http.StatusInternalServerError)
 		}
 	}
 
@@ -65,4 +65,8 @@ func challengeResponseBody() string {
 func sum256String(s string) string {
 	hash := sha256.Sum256([]byte(s))
 	return fmt.Sprintf("%x", hash[:])
+}
+
+func httpError(w http.ResponseWriter, httpStatus int) {
+	http.Error(w, http.StatusText(httpStatus), httpStatus)
 }
