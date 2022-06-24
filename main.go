@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"crypto/sha256"
 	"fmt"
 	"io"
@@ -27,12 +26,7 @@ func main() {
 	}
 
 	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
-		body, err := io.ReadAll(req.Body)
-		if err != nil {
-			httpError(w, http.StatusInternalServerError)
-		}
-
-		_, err = http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), bytes.NewBuffer(body))
+		_, err := http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), req.Body)
 		if err != nil {
 			httpError(w, http.StatusInternalServerError)
 		}
