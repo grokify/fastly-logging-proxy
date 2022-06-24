@@ -6,6 +6,8 @@ This small server supports the challenge at `/.well-known/fastly/logging/challen
 
 ## Installation
 
+### Heroku
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 During the installation process, set the following environment variables.
@@ -21,3 +23,11 @@ Once this is set up, set your Heroku URL to be your Fastly logging endpoint, for
 The challenge response will be automatically provided at:
 
 `https://{my-log-proxy}.herokuapp.com/.well-known/fastly/logging/challenge`
+
+### Running locally
+
+If you want to run this service locally, you can do this by running it behind a ngrok reverse proxy.
+
+### Other
+
+For other deployment modes, this is a simple zero-dependency `net/http` server and should be easy to deploy.
