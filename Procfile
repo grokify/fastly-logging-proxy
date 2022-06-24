@@ -1,1 +1,1 @@
-web: fastly-compute-logger-http-proxy
+web: fastly-compute-logging-http-proxy

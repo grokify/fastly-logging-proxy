@@ -5,8 +5,8 @@
         "Fastly",
         "Compute@Edge"
     ],
-    "website": "https://github.com/grokify/fastly-compute-logger-http-proxy",
-    "repository": "https://github.com/grokify/fastly-compute-logger-http-proxy",
+    "website": "https://github.com/grokify/fastly-compute-logging-http-proxy",
+    "repository": "https://github.com/grokify/fastly-compute-logging-http-proxy",
     "formation": {
         "web": {
             "quantity": 1,
