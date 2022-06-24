@@ -18,22 +18,18 @@ func main() {
 		port = "8080"
 	}
 
-	fastlyChallengeHandler := func(w http.ResponseWriter, req *http.Request) {
-		_, err := io.WriteString(w, challengeResponseBody())
-		if err != nil {
+	http.HandleFunc(fastlyChallengeURLPath, func(w http.ResponseWriter, req *http.Request) {
+		if _, err := io.WriteString(w, challengeResponseBody()); err != nil {
 			httpError(w, http.StatusInternalServerError)
 		}
-	}
+	})
 
-	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
-		_, err := http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), req.Body)
-		if err != nil {
+	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
+		if _, err := http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), req.Body); err != nil {
 			httpError(w, http.StatusInternalServerError)
 		}
-	}
+	})
 
-	http.HandleFunc(fastlyChallengeURLPath, fastlyChallengeHandler)
-	http.HandleFunc("/", fastlyLogHandler)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
