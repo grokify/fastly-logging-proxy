@@ -1,6 +1,6 @@
-# Fastly Compute@Edge Logger HTTP/S Proxy
+# Fastly Compute@Edge Logging HTTP/S Proxy
 
-[Fastly's Compute@Edge log streaming for HTTPS](https://docs.fastly.com/en/guides/compute-log-streaming-https) requires a challenge/response protocol, however some services such as [RequestBin](https://requestbin.com/) do not support this.
+This proxy enables using [Fastly's HTTPS log streaming(https://docs.fastly.com/en/guides/compute-log-streaming-https) to services that cannot implement Fastly's challenge/response protocolo, like [RequestBin](https://requestbin.com/) do not support this, which can be very useful for development purposes.
 
 This small server supports the challenge at `/.well-known/fastly/logging/challenge` and proxes to the server URL at the environment variable `PROXY_URL` without a challenge-response.
 
