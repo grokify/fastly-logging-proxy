@@ -10,10 +10,15 @@ import (
 	"strings"
 )
 
-const fastlyChallengeURLPath = "/.well-known/fastly/logging/challenge"
+const (
+	envVarFastlyServiceIDs = "FASTLY_SERVICE_IDS"
+	envVarPort             = "PORT"
+	envVarProxyURL         = "PROXY_URL"
+	fastlyChallengeURLPath = "/.well-known/fastly/logging/challenge"
+)
 
 func main() {
-	port := strings.TrimSpace(os.Getenv("PORT"))
+	port := strings.TrimSpace(os.Getenv(envVarPort))
 	if len(port) == 0 {
 		port = "8080"
 	}
@@ -25,7 +30,7 @@ func main() {
 	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if _, err := http.Post(os.Getenv("PROXY_URL"), req.Header.Get("Content-Type"), req.Body); err != nil {
+		if _, err := http.Post(os.Getenv(envVarProxyURL), req.Header.Get("Content-Type"), req.Body); err != nil {
 			httpError(w, http.StatusInternalServerError)
 		}
 	})
@@ -34,7 +39,7 @@ func main() {
 }
 
 func challengeResponseBody() string {
-	ids := strings.Split(os.Getenv("FASTLY_SERVICE_IDS"), ",")
+	ids := strings.Split(os.Getenv(envVarFastlyServiceIDs), ",")
 	responses := []string{}
 	for _, id := range ids {
 		id = strings.TrimSpace(id)
