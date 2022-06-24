@@ -20,7 +20,10 @@ func main() {
 	}
 
 	fastlyChallengeHandler := func(w http.ResponseWriter, req *http.Request) {
-		io.WriteString(w, challengeResponseBody())
+		_, err := io.WriteString(w, challengeResponseBody())
+		if err != nil {
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		}
 	}
 
 	fastlyLogHandler := func(w http.ResponseWriter, req *http.Request) {
