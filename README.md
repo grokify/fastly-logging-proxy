@@ -6,11 +6,11 @@ This small server supports the challenge at `/.well-known/fastly/logging/challen
 
 # To Do
 
-- [x] Proxy server side logging from HTTPS log streaming
+- [x] Proxy server-side logging from HTTPS log streaming
 - [x] Heroku one button deployment (default to free tier)
 - [x] Papertrail logging on Heroku (defaulls to free tier). Currently covers proxy service only
-- [ ] Proxy Fastly directly to [Papertrail](https://www.papertrail.com/)
-- [ ] Fastly Tail Logging support
+- [ ] Proxy Fastly server-side logging directly to [Papertrail](https://www.papertrail.com/)
+- [ ] Fastly CLI Tail Logging support by implementing subscription service
 
 ## Installation
 
