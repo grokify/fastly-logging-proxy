@@ -24,7 +24,7 @@ func main() {
 	}
 
 	http.HandleFunc(fastlyChallengeURLPath, func(w http.ResponseWriter, req *http.Request) {
-		if _, err := io.WriteString(w, challengeResponseBody()); err != nil {
+		if _, err := io.WriteString(w, challengeResponseBody(os.Getenv(envVarFastlyServiceIDs))); err != nil {
 			httpError(w, http.StatusInternalServerError)
 		}
 	})
@@ -38,17 +38,19 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
-func challengeResponseBody() string {
-	ids := strings.Split(os.Getenv(envVarFastlyServiceIDs), ",")
+func challengeResponseBody(serviceIDs ...string) string {
 	responses := []string{}
-	for _, id := range ids {
-		id = strings.TrimSpace(id)
-		if len(id) == 0 {
-			continue
-		} else if id == "*" {
-			responses = append(responses, "*")
-		} else {
-			responses = append(responses, sum256String(id))
+	for _, idStr := range serviceIDs {
+		ids := strings.Split(idStr, ",")
+		for _, id := range ids {
+			id = strings.TrimSpace(id)
+			if len(id) == 0 {
+				continue
+			} else if id == "*" {
+				responses = append(responses, "*")
+			} else {
+				responses = append(responses, sum256String(id))
+			}
 		}
 	}
 	if len(responses) == 0 {
