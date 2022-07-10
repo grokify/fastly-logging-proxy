@@ -1,8 +1,13 @@
 # Fastly Compute@Edge Logging HTTP/S Proxy
 
-This proxy enables using [Fastly's HTTPS log streaming](https://docs.fastly.com/en/guides/compute-log-streaming-https) to services that cannot implement Fastly's challenge/response protocolo, like [RequestBin](https://requestbin.com/), which can be very useful for development purposes.
+This proxy enables using [Fastly's HTTPS log streaming](https://docs.fastly.com/en/guides/log-streaming-https) with [Compute@Edge support](https://docs.fastly.com/en/guides/compute-log-streaming-https) to services that cannot implement Fastly's challenge/response protocolo, like [RequestBin](https://requestbin.com/), [Zapier](https://zapier.com/) and others.
 
-This small server supports the challenge at `/.well-known/fastly/logging/challenge` and proxes to the server URL at the environment variable `PROXY_URL` without a challenge-response.
+This small server supports the Fastly HTTPS logging challenge at `/.well-known/fastly/logging/challenge` and proxes to the server URL at the environment variable `PROXY_URL` without a challenge-response.
+
+See more here:
+
+* [Log streaming: HTTPS](https://docs.fastly.com/en/guides/log-streaming-https)
+* [Compute@Edge log streaming: HTTPS](https://docs.fastly.com/en/guides/compute-log-streaming-https)
 
 # To Do
 
