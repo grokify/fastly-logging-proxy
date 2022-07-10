@@ -25,9 +25,11 @@ See more here:
 
 During the installation process, set the following environment variables.
 
-* `PORT`: the port the service listens on. Do not populate for Heroku as Heroku will automatically populate this.
-* `FASTLY_SERVICE_IDS`: a comma-delimited list of Service IDs. Use `*` to indicate any Service ID. There's no need to do the SHA256 checksum yourself, as the proxy service will automaticaly hash the Service IDs in the `FASTLY_SERVICE_IDS` environment variable.
-* `PROXY_URL`: the URL where the incoming body should be posted to. Only HTTP `POST` method is supported for now.
+| Variable | Type | Required | Notes |
+|----------|------|----------|-------|
+| `PORT`         | integer | n | auto-populated by Heroku |
+| `FASTLY_SERVICE_IDS` | string | n | a comma-delimited list of Service IDs. To support any Service ID, leave empty or explicitly set to `*`. Do not run the SHA256 checksum yourself, as the proxy service will automaticaly hash the Service IDs in the `FASTLY_SERVICE_IDS` environment variable. |
+| `PROXY_URL` | string | y | the URL where the incoming body should be posted to. Only HTTP `POST` method is supported for now. |
 
 Once this is set up, set your Heroku URL to be your Fastly logging endpoint, for example:
 
