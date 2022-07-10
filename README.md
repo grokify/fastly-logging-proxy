@@ -1,4 +1,4 @@
-# Fastly Compute@Edge Logging HTTP/S Proxy
+# Fastly Log Streaming HTTPS Proxy
 
 This proxy enables using [Fastly's HTTPS log streaming](https://docs.fastly.com/en/guides/log-streaming-https) with [Compute@Edge support](https://docs.fastly.com/en/guides/compute-log-streaming-https) to services that cannot implement Fastly's challenge/response protocolo, like [RequestBin](https://requestbin.com/), [Zapier](https://zapier.com/) and others.
 
