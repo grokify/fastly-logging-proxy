@@ -4,6 +4,8 @@ This proxy enables using [Fastly's HTTPS log streaming](https://docs.fastly.com/
 
 This small server supports the Fastly HTTPS logging challenge at `/.well-known/fastly/logging/challenge` and proxes to the server URL at the environment variable `PROXY_URL` without a challenge-response.
 
+Note: It is configured to be deployed to Heroku's free tier for testing purposes. This can be adjusted by forking this repo and editing the [`app.json`](app.json) file.
+
 See more here:
 
 * [Log streaming: HTTPS](https://docs.fastly.com/en/guides/log-streaming-https)
