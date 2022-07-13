@@ -30,20 +30,15 @@ func main() {
 	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if _, err := http.Post(os.Getenv(envVarProxyURL), req.Header.Get("Content-Type"), req.Body); err != nil {
-			httpError(w, http.StatusInternalServerError)
-		}
-		/*
-			if req.Method == http.MethodGet {
-				if _, err := w.Write([]byte("Fastly Logging Proxy")); err != nil {
-					httpError(w, http.StatusInternalServerError)
-				}
-			} else {
-				if _, err := http.Post(os.Getenv(envVarProxyURL), req.Header.Get("Content-Type"), req.Body); err != nil {
-					httpError(w, http.StatusInternalServerError)
-				}
+		if req.Method == http.MethodGet {
+			if _, err := w.Write([]byte("Fastly Logging Proxy")); err != nil {
+				httpError(w, http.StatusInternalServerError)
 			}
-		*/
+		} else {
+			if _, err := http.Post(os.Getenv(envVarProxyURL), req.Header.Get("Content-Type"), req.Body); err != nil {
+				httpError(w, http.StatusInternalServerError)
+			}
+		}
 	})
 
 	log.Fatal(http.ListenAndServe(":"+port, nil))
